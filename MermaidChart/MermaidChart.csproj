@@ -56,9 +56,7 @@
     <Compile Include="UI\MermaidControlsAdornment.xaml.cs">
       <DependentUpon>MermaidControlsAdornment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OptionsPage.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Options\SettingsGeneralPage.cs" />
     <Compile Include="Utils\Either.cs" />
     <Compile Include="Utils\MermaidLinkUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

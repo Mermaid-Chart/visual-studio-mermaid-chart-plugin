@@ -18,13 +18,7 @@ namespace MermaidChart.API
 
         private static string baseUrl()
         {
-            ThreadHelper.ThrowIfNotOnUIThread(); //TODO: Remove UI thread dependency
-            var vsShellService = (ServiceProvider.GlobalProvider.GetService(typeof(IVsShell)) as IVsShell);
-            if (vsShellService.IsPackageLoaded(PackageGuids.MermaidChart, out var plugin) == Microsoft.VisualStudio.VSConstants.S_OK) {
-                var page = ((MermaidChartPackage)plugin).GetDialogPage(typeof(OptionsPage));
-                return ((OptionsPage)page).BaseUrlField;
-            }
-            return OptionsPage.BaseUrl;
+            return SettingsGeneralPage.Instance.BaseUrl;
         }
 
         internal static string ViewUrl(MermaidDocument document, DiagramTheme theme, DiagramFormat format = DiagramFormat.PNG)

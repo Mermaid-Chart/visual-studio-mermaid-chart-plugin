@@ -17,21 +17,14 @@ namespace MermaidChart.API
 {
     internal class APIClient
     {
-        private static string token()
+        private string token = SettingsGeneralPage.Instance.AccessToken;
+        public APIClient() {
+            SettingsGeneralPage.Saved += OnSettingsChanged;
+        }
+
+        private void OnSettingsChanged(SettingsGeneralPage obj)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-            var vsShellService = (ServiceProvider.GlobalProvider.GetService(typeof(IVsShell)) as IVsShell);
-            if (vsShellService.IsPackageLoaded(PackageGuids.MermaidChart, out var plugin) == Microsoft.VisualStudio.VSConstants.S_OK)
-            {
-                var page = ((MermaidChartPackage)plugin).GetDialogPage(typeof(OptionsPage));
-                var token = ((OptionsPage)page).AccessTokenField;
-                if(token == null || String.IsNullOrEmpty(token))
-                {
-                    throw new Exception("token is null");
-                }
-                return token;
-            }
-            throw new Exception("token can't be loaded");
+            this.token = obj.AccessToken;
         }
 
         private static HttpClient client = new HttpClient(
@@ -72,7 +65,7 @@ namespace MermaidChart.API
             {
 
                 var request = new HttpRequestMessage(HttpMethod.Get, url);
-                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token());
+                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                 var result = await client.SendAsync(request);
                 return new EitherE<T>(JsonConvert.DeserializeObject<T>(await result.Content.ReadAsStringAsync()));
             }catch (Exception ex)
