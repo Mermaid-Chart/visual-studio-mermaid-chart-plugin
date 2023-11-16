@@ -1,17 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <Extern href="stdidcmd.h"/>
-  <Extern href="vsshlids.h"/>
-  <Include href="KnownImageIds.vsct"/>
-  <Include href="VSGlobals.vsct"/>
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+  <Include href="KnownImageIds.vsct" />
+  <Include href="VSGlobals.vsct" />
 
   <Commands package="MermaidChart">
+  
+    <Groups>
+      <Group guid="guidMermaidChartPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+      </Group>
+    </Groups>
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\Command1.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+    </Bitmaps>
+    <Buttons>
+      <Button guid="guidMermaidChartPackageCmdSet" id="cmdidCommand1" priority="0x0100" type="Button">
+        <Parent guid="guidMermaidChartPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Invoke Command1</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
   </Commands>
 
   <Symbols>
     <GuidSymbol name="MermaidChart" value="{3cae6b67-bb28-48f6-888f-641fbb567d4a}">
       
+    </GuidSymbol>
+  
+    <GuidSymbol value="{512fc355-237a-4937-9805-cbdb25e11682}" name="guidMermaidChartPackageCmdSet">
+      <IDSymbol value="4128" name="MyMenuGroup" />
+      <IDSymbol value="256" name="cmdidCommand1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{0539ae13-0390-4fb5-a266-96ed3eb9cd16}" name="guidImages">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

@@ -6,7 +6,6 @@ namespace MermaidChart.UI
 {
     internal partial class OptionsProvider
     {
-        [ProvideOptionPage(typeof(OptionsProvider.SettingsGeneralPageOptions), "MermaidChart", "SettingsGeneralPage", 0, 0, true, SupportsProfiles = true)]
         [ComVisible(true)]
         public class SettingsGeneralPageOptions : BaseOptionPage<SettingsGeneralPage> { }
     }
@@ -24,7 +23,7 @@ namespace MermaidChart.UI
         [Category("General")]
         [DisplayName("Access Token")]
         [Description("Mermaid Chart API access token")]
-        public string AccessToken { get; set; } = DefaultUrl;
+        public string AccessToken { get; set; } = "";
 
 
         private string cleanupUrl(string url)

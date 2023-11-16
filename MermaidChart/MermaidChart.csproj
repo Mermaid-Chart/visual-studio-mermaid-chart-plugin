@@ -49,6 +49,7 @@
     <Compile Include="API\Models\MermaidDocument.cs" />
     <Compile Include="API\Models\MermaidProject.cs" />
     <Compile Include="API\URLProvider.cs" />
+    <Compile Include="Commands\TestAPICommand.cs" />
     <Compile Include="EditorExtensions\IntraTextAdornmentTagger.cs" />
     <Compile Include="EditorExtensions\MermaidTagger.cs" />
     <Compile Include="EditorExtensions\TextAdornment.cs" />
@@ -86,18 +87,23 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.cs</LastGenOutput>
     </None>
+    <Content Include="Resources\Command1.png" />
     <Content Include="Resources\Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Design" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>

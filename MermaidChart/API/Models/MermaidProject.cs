@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,17 @@ namespace MermaidChart.API.Models
 {
     internal class MermaidProject
     {
-        string id;
-        string title;
+        [JsonProperty("id")]
+        public string Id;
+        [JsonProperty("title")]
+        public string Title;
+
+        internal MermaidProject() { }
 
         internal MermaidProject(string id, string title)
         {
-            this.id = id;
-            this.title = title;
+            this.Id = id;
+            this.Title = title;
         }
     }
 }

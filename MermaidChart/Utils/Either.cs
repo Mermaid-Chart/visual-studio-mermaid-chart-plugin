@@ -8,9 +8,9 @@ namespace MermaidChart.Utils
 {
     public class Either<TL,TR>
     {
-        private readonly TL left;
-        private readonly TR right;
-        private readonly bool isLeft;
+        readonly TL left;
+        readonly TR right;
+        readonly bool isLeft;
 
         public Either(TL left)
         {
