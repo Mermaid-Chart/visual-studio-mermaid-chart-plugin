@@ -20,7 +20,7 @@ namespace MermaidChart.API.Models
         [JsonProperty("documentId")]
         public string DocumentId { get; set; }
         [JsonProperty("updatedAd")]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; } //TODO: Fix JSON parsing
 
         internal MermaidDocument() { }
 

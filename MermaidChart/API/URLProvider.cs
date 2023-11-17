@@ -23,7 +23,7 @@ namespace MermaidChart.API
 
         internal static string ViewUrl(MermaidDocument document, DiagramTheme theme, DiagramFormat format = DiagramFormat.PNG)
         {
-            return $"{baseUrl()}/raw/{document.DocumentId}?version=v{document.Major}.{document.Minor}&theme={theme}&format={format}";
+            return $"{baseUrl()}/raw/{document.DocumentId}?version=v{document.Major}.{document.Minor}&theme={theme.ToString().ToLower()}&format={format.ToString().ToLower()}";
         }
 
         internal static string EditUrl(string documentId)

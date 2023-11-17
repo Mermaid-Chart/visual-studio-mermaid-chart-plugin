@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="Options\SettingsGeneralPage.cs" />
     <Compile Include="Utils\Either.cs" />
+    <Compile Include="Utils\HttpClientExtensions.cs" />
     <Compile Include="Utils\MermaidLinkUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MermaidChartPackage.cs" />
@@ -74,6 +75,7 @@
       <Generator>VsctGenerator</Generator>
       <LastGenOutput>VSCommandTable.cs</LastGenOutput>
     </VSCTCompile>
+    <Compile Include="Utils\StreamExtensions.cs" />
     <Compile Include="Utils\ThemeUtils.cs" />
     <Compile Include="VSCommandTable.cs">
       <AutoGen>True</AutoGen>

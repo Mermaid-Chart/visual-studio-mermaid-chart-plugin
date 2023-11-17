@@ -12,20 +12,13 @@ using MermaidChart.API.Models;
 using MermaidChart.UI;
 using Newtonsoft.Json;
 using MermaidChart.Utils;
+using System.IO;
 
 namespace MermaidChart.API
 {
     internal class APIClient
     {
         private string token = SettingsGeneralPage.Instance.AccessToken;
-        public APIClient() {
-            SettingsGeneralPage.Saved += OnSettingsChanged;
-        }
-
-        private void OnSettingsChanged(SettingsGeneralPage obj)
-        {
-            this.token = obj.AccessToken;
-        }
 
         private static HttpClient client = new HttpClient(
             new HttpClientHandler()
@@ -34,6 +27,33 @@ namespace MermaidChart.API
                 UseProxy = false
             }
         );
+
+        public APIClient() {
+            SettingsGeneralPage.Saved += OnSettingsChanged;
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+
+        private void OnSettingsChanged(SettingsGeneralPage obj)
+        {
+            this.token = obj.AccessToken;
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+
+        internal async Task<EitherE<bool>> DownloadFileAsync(string uri, string filePath)
+        {
+            try
+            {
+                using (var file = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                    await client.DownloadAsync(uri, file);
+                }
+                return new EitherE<bool>(true);
+            }
+            catch (Exception ex)
+            {
+                return new EitherE<bool>(ex);
+            }
+        }
 
         internal async Task<EitherE<List<MermaidProject>>> GetProjectsAsync() 
         {
@@ -63,9 +83,7 @@ namespace MermaidChart.API
         {
             try
             {
-
                 var request = new HttpRequestMessage(HttpMethod.Get, url);
-                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                 var result = await client.SendAsync(request);
                 return new EitherE<T>(JsonConvert.DeserializeObject<T>(await result.Content.ReadAsStringAsync()));
             }catch (Exception ex)
