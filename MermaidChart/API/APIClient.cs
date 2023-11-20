@@ -81,11 +81,14 @@ namespace MermaidChart.API
 
         private async Task<EitherE<T>> GetAsync<T>(string url)
         {
+            Debug.WriteLine(DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFZ"));
             try
             {
                 var request = new HttpRequestMessage(HttpMethod.Get, url);
                 var result = await client.SendAsync(request);
-                return new EitherE<T>(JsonConvert.DeserializeObject<T>(await result.Content.ReadAsStringAsync()));
+                var jsonString = await result.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<T>(jsonString);
+                return new EitherE<T>(obj);
             }catch (Exception ex)
             {
                 return new EitherE<T>(ex);

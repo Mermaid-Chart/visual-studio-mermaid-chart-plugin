@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="API\APIClient.cs" />
+    <Compile Include="API\Converters\MermaidAPIDateTimeConverter.cs" />
     <Compile Include="API\Models\MermaidDocument.cs" />
     <Compile Include="API\Models\MermaidProject.cs" />
     <Compile Include="API\URLProvider.cs" />

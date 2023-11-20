@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using MermaidChart.API.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,8 @@ namespace MermaidChart.API.Models
         public int Minor { get; set; }
         [JsonProperty("documentId")]
         public string DocumentId { get; set; }
-        [JsonProperty("updatedAd")]
+        [JsonConverter(typeof(MermaidAPIDateTimeConverter))]
+        [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } //TODO: Fix JSON parsing
 
         internal MermaidDocument() { }
