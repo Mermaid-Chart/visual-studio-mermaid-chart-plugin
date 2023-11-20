@@ -2,7 +2,7 @@
 using MermaidChart.API.Models;
 using System.Linq;
 
-namespace MermaidChart
+namespace MermaidChart.Commands
 {
     [Command("512fc355-237a-4937-9805-cbdb25e11682", 0x0100)]
     internal sealed class TestAPICommand : BaseCommand<TestAPICommand>

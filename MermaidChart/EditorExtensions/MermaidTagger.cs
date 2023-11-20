@@ -10,7 +10,7 @@ using System.Linq;
 using System.Windows.Media.Animation;
 using MermaidChart.Utils;
 
-namespace MermaidChart
+namespace MermaidChart.EditorExtensions
 {
     [Export(typeof(IViewTaggerProvider))]
     [ContentType("code")]

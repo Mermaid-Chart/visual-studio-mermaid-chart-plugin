@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.Utilities;
 using System.ComponentModel.Composition;
 
-namespace MermaidChart
+namespace MermaidChart.EditorExtensions
 {
     /// <summary>
     /// Establishes an <see cref="IAdornmentLayer"/> to place the adornment on and exports the <see cref="IWpfTextViewCreationListener"/>

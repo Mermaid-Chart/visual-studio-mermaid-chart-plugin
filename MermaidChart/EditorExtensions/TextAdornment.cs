@@ -9,7 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using MermaidChart.Utils;
 
-namespace MermaidChart
+namespace MermaidChart.EditorExtensions
 {
     /// <summary>
     /// TextAdornment1 places red boxes behind all the "a"s in the editor window

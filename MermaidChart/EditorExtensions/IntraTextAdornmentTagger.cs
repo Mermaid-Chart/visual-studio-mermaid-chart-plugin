@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Diagnostics;
 
-namespace MermaidChart
+namespace MermaidChart.EditorExtensions
 {
 
     internal abstract class IntraTextAdornmentTagger<TData, TAdornment>: ITagger<IntraTextAdornmentTag> where TAdornment : UIElement

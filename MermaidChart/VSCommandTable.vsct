@@ -15,6 +15,7 @@
     </Groups>
     <Bitmaps>
       <Bitmap guid="guidImages" href="Resources\Command1.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="windowImages1" href="Resources\MermaidDiagramListCommand.png" usedList="toolWindowPic1, toolWindowPic2, toolWindowPicSearch, toolWindowPicX, toolWindowPicArrows, toolWindowPicStrikethrough" />
     </Bitmaps>
     <Buttons>
       <Button guid="guidMermaidChartPackageCmdSet" id="cmdidCommand1" priority="0x0100" type="Button">
@@ -22,6 +23,13 @@
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Invoke Command1</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMermaidChartPackageCmdSet" id="cmdidToolWindow1Command" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
+        <Icon guid="windowImages1" id="toolWindowPic1" />
+        <Strings>
+          <ButtonText>Mermaid Chart</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -35,6 +43,7 @@
     <GuidSymbol value="{512fc355-237a-4937-9805-cbdb25e11682}" name="guidMermaidChartPackageCmdSet">
       <IDSymbol value="4128" name="MyMenuGroup" />
       <IDSymbol value="256" name="cmdidCommand1" />
+      <IDSymbol value="4129" name="cmdidToolWindow1Command" />
     </GuidSymbol>
   
     <GuidSymbol value="{0539ae13-0390-4fb5-a266-96ed3eb9cd16}" name="guidImages">
@@ -44,6 +53,15 @@
       <IDSymbol name="bmpPicX" value="4" />
       <IDSymbol name="bmpPicArrows" value="5" />
       <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{eef6e5f7-721b-4283-855a-5dfd714f4e36}" name="windowImages1">
+      <IDSymbol name="toolWindowPic1" value="1" />
+      <IDSymbol name="toolWindowPic2" value="2" />
+      <IDSymbol name="toolWindowPicSearch" value="3" />
+      <IDSymbol name="toolWindowPicX" value="4" />
+      <IDSymbol name="toolWindowPicArrows" value="5" />
+      <IDSymbol name="toolWindowPicStrikethrough" value="6" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
