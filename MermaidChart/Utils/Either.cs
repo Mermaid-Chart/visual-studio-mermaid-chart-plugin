@@ -8,24 +8,24 @@ namespace MermaidChart.Utils
 {
     public class Either<TL,TR>
     {
-        readonly TL left;
-        readonly TR right;
-        readonly bool isLeft;
+        internal TL Left;
+        internal TR Right;
+        internal bool IsLeft;
 
         public Either(TL left)
         {
-            this.left = left;
-            this.isLeft = true;
+            this.Left = left;
+            this.IsLeft = true;
         }
 
         public Either(TR right)
         {
-            this.right = right;
-            this.isLeft = false;
+            this.Right = right;
+            this.IsLeft = false;
         }
 
         public T Match<T>(Func<TL, T> leftFunc, Func<TR, T> rightFunc)
-            => this.isLeft ? leftFunc(this.left) : rightFunc(this.right);
+            => this.IsLeft ? leftFunc(this.Left) : rightFunc(this.Right);
 
         public static implicit operator Either<TL, TR>(TL left) => new Either<TL, TR>(left);
 

@@ -49,6 +49,7 @@
     <Compile Include="API\Converters\MermaidAPIDateTimeConverter.cs" />
     <Compile Include="API\Models\MermaidDocument.cs" />
     <Compile Include="API\Models\MermaidProject.cs" />
+    <Compile Include="API\Models\ProjectWithDocuments.cs" />
     <Compile Include="API\URLProvider.cs" />
     <Compile Include="Commands\TestAPICommand.cs" />
     <Compile Include="EditorExtensions\IntraTextAdornmentTagger.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="UI\MermaidDiagramListWindowControl.xaml.cs">
       <DependentUpon>MermaidDiagramListWindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\CommentUtils.cs" />
     <Compile Include="Utils\Either.cs" />
     <Compile Include="Utils\HttpClientExtensions.cs" />
     <Compile Include="Utils\MermaidLinkUtils.cs" />

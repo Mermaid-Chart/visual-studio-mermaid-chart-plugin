@@ -3,27 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
              xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+             xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog" 
              Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid>
+        
+        <ToolBar 
+             Height="25" 
+             VerticalAlignment="Top"
+             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
+             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}" >
+
+            <Button>
+                <imaging:CrispImage Width="16" Height="16" Moniker="{x:Static catalog:KnownMonikers.Refresh}" />
+            </Button>
+        </ToolBar>
+        
         <TreeView
+            Name="treeList"
             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Title}"
+                               Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
+                               MouseLeftButtonUp="ListItemLeftButtonUp"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
             
-            <TreeViewItem Header="Projects"
-                        Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}">
-                <TreeViewItem Header="Project Name"
-                        Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}">
-                    <TreeViewItem 
-                        Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
-                        Header="Document Name"
-                        MouseLeftButtonUp="TreeViewItem_Selected" />
-                </TreeViewItem>
-            </TreeViewItem>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                </Style>
+            </TreeView.ItemContainerStyle>
         </TreeView>
     </Grid>
 </UserControl>
