@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using MermaidChart.Utils;
 using System.IO;
 using System.Windows.Media.Media3D;
+using MermaidChart.Options;
 
 namespace MermaidChart.API
 {

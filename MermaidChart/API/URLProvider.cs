@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MermaidChart.API.Models;
-using MermaidChart.UI;
+using MermaidChart.Options;
 
 namespace MermaidChart.API
 {

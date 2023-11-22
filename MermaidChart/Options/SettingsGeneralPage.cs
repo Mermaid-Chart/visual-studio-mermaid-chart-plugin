@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
-namespace MermaidChart.UI
+namespace MermaidChart.Options
 {
     internal partial class OptionsProvider
     {

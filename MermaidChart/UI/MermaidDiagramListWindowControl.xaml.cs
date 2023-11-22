@@ -1,21 +1,19 @@
 ﻿using EnvDTE;
 using EnvDTE80;
-using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Threading;
 using System.Collections.ObjectModel;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Windows;
 using System.Windows.Controls;
-using MessageBox = System.Windows.MessageBox;
 using System.ComponentModel;
 using System.Collections.Generic;
 using MermaidChart.Utils;
 using MermaidChart.API.Models;
 using MermaidChart.API;
-using System.Diagnostics;
 using MermaidChart.Commands;
 using System.Threading;
+using MermaidChart.Options;
+using Microsoft.VisualStudio.Shell.Interop;
+using static Microsoft.VisualStudio.VSConstants;
+using static MermaidChart.Options.OptionsProvider;
 
 namespace MermaidChart.UI
 {
@@ -23,6 +21,7 @@ namespace MermaidChart.UI
     {
         private CancellationTokenSource refreshCancellationSource = null;
         private APIClient client = new APIClient();
+        private MermaidChartPackage package;
         public MermaidDiagramListWindowControl()
         {
             this.InitializeComponent();
@@ -31,6 +30,15 @@ namespace MermaidChart.UI
             DiagramListRefreshCommand.OnRefresh += OnRefreshCommand;
             
             RefreshList();
+
+            _ = ThreadHelper.JoinableTaskFactory.RunAsync(async () => {
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var vsShell = (IVsShell)ServiceProvider.GlobalProvider.GetService(typeof(IVsShell));
+                if (vsShell.IsPackageLoaded(PackageGuids.MermaidChart, out var myPackage) == S_OK)
+                {
+                    this.package = (MermaidChartPackage)myPackage;
+                }
+            });
         }
 
         private void OnRefreshCommand()
@@ -173,7 +181,7 @@ namespace MermaidChart.UI
 
         private void NavigatePluginSettings()
         {
-            throw new NotImplementedException();
+            package.ShowOptionPage(typeof(SettingsGeneralPageOptions));
         }
 
         private void InsertDocumentLink(string documentId)

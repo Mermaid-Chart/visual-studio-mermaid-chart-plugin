@@ -2,14 +2,12 @@
 global using Microsoft.VisualStudio.Shell;
 global using System;
 global using Task = System.Threading.Tasks.Task;
-using MermaidChart.UI;
+using MermaidChart.Options;
 using MermaidChart.Commands;
 using MermaidChart.EditorExtensions;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.VisualStudio.Shell.Interop;
-using Constants = EnvDTE.Constants;
-using Microsoft.VisualStudio;
 
 namespace MermaidChart
 {
