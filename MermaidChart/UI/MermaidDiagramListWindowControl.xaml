@@ -24,7 +24,7 @@
                     <StackPanel
                         Orientation="Horizontal"
                         MouseLeftButtonUp="ListItemLeftButtonUp">
-                        
+
                         <TextBlock Text="{Binding Title}"
                                Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"/>
 
@@ -38,6 +38,11 @@
             
             <TreeView.ItemContainerStyle>
                 <Style TargetType="TreeViewItem">
+                    <Style.Resources>
+                        <SolidColorBrush 
+                            x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" 
+                            Color="{DynamicResource {x:Static vsshell:VsColors.CommandBarHoverKey}}"/>
+                    </Style.Resources>
                     <Setter Property="IsSelected" Value="{Binding IsSelected}" />
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
                 </Style>
