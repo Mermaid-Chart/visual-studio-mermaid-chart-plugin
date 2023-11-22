@@ -1,67 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<CommandTable
+	xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<Extern href="stdidcmd.h" />
+	<Extern href="vsshlids.h" />
+	<Include href="KnownImageIds.vsct" />
+	<Include href="VSGlobals.vsct" />
+	
+	<Commands package="MermaidChart">
+		<Groups>
+			<Group guid="MermaidChartCommandSet" id="MyMenuGroup" priority="0x0600">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+			</Group>
+			<Group guid="DiagramListWindowCmdSet" id="DiagramListToolbarGroup" priority="0x0000">
+				<Parent guid="DiagramListWindowCmdSet" id="DiagramListToolbar" />
+			</Group>
+		</Groups>
+		
+		<Bitmaps>
+			<Bitmap guid="guidImages" href="Resources\Command1.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+			<Bitmap guid="windowImages1" href="Resources\MermaidDiagramListCommand.png" usedList="toolWindowPic1, toolWindowPic2, toolWindowPicSearch, toolWindowPicX, toolWindowPicArrows, toolWindowPicStrikethrough" />
+		</Bitmaps>
+		
+		<Buttons>			
+			<Button guid="MermaidChartCommandSet" id="OpenDiagramList" priority="0x0100" type="Button">
+				<Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
+				<Icon guid="windowImages1" id="toolWindowPic1" />
+				<Strings>
+					<ButtonText>Mermaid Chart</ButtonText>
+				</Strings>
+			</Button>
 
-  <Extern href="stdidcmd.h" />
-  <Extern href="vsshlids.h" />
-  <Include href="KnownImageIds.vsct" />
-  <Include href="VSGlobals.vsct" />
-
-  <Commands package="MermaidChart">
-  
-    <Groups>
-      <Group guid="guidMermaidChartPackageCmdSet" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
-      </Group>
-    </Groups>
-    <Bitmaps>
-      <Bitmap guid="guidImages" href="Resources\Command1.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
-      <Bitmap guid="windowImages1" href="Resources\MermaidDiagramListCommand.png" usedList="toolWindowPic1, toolWindowPic2, toolWindowPicSearch, toolWindowPicX, toolWindowPicArrows, toolWindowPicStrikethrough" />
-    </Bitmaps>
-    <Buttons>
-      <Button guid="guidMermaidChartPackageCmdSet" id="cmdidCommand1" priority="0x0100" type="Button">
-        <Parent guid="guidMermaidChartPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages" id="bmpPic1" />
-        <Strings>
-          <ButtonText>Invoke Command1</ButtonText>
-        </Strings>
-      </Button>
-      <Button guid="guidMermaidChartPackageCmdSet" id="cmdidToolWindow1Command" priority="0x0100" type="Button">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
-        <Icon guid="windowImages1" id="toolWindowPic1" />
-        <Strings>
-          <ButtonText>Mermaid Chart</ButtonText>
-        </Strings>
-      </Button>
-    </Buttons>
-  </Commands>
-
-  <Symbols>
-    <GuidSymbol name="MermaidChart" value="{3cae6b67-bb28-48f6-888f-641fbb567d4a}">
-      
-    </GuidSymbol>
-  
-    <GuidSymbol value="{512fc355-237a-4937-9805-cbdb25e11682}" name="guidMermaidChartPackageCmdSet">
-      <IDSymbol value="4128" name="MyMenuGroup" />
-      <IDSymbol value="256" name="cmdidCommand1" />
-      <IDSymbol value="4129" name="cmdidToolWindow1Command" />
-    </GuidSymbol>
-  
-    <GuidSymbol value="{0539ae13-0390-4fb5-a266-96ed3eb9cd16}" name="guidImages">
-      <IDSymbol name="bmpPic1" value="1" />
-      <IDSymbol name="bmpPic2" value="2" />
-      <IDSymbol name="bmpPicSearch" value="3" />
-      <IDSymbol name="bmpPicX" value="4" />
-      <IDSymbol name="bmpPicArrows" value="5" />
-      <IDSymbol name="bmpPicStrikethrough" value="6" />
-    </GuidSymbol>
-  
-    <GuidSymbol value="{eef6e5f7-721b-4283-855a-5dfd714f4e36}" name="windowImages1">
-      <IDSymbol name="toolWindowPic1" value="1" />
-      <IDSymbol name="toolWindowPic2" value="2" />
-      <IDSymbol name="toolWindowPicSearch" value="3" />
-      <IDSymbol name="toolWindowPicX" value="4" />
-      <IDSymbol name="toolWindowPicArrows" value="5" />
-      <IDSymbol name="toolWindowPicStrikethrough" value="6" />
-    </GuidSymbol>
-  </Symbols>
+			<Button guid="MermaidChartCommandSet" id="RefreshDiagramList" priority="0x0100" type="Button">
+				<Parent guid="DiagramListWindowCmdSet" id="DiagramListToolbarGroup" />
+				<Icon guid="ImageCatalogGuid" id="Refresh" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<Strings>	
+					<ButtonText>Refresh</ButtonText>
+				</Strings>
+			</Button>
+		</Buttons>
+		
+		<Menus>
+			<Menu guid="DiagramListWindowCmdSet" id="DiagramListToolbar" type="ToolWindowToolbar">
+				<CommandFlag>DefaultDocked</CommandFlag>
+				<Strings>
+					<ButtonText>Toolbar</ButtonText>
+					<CommandName>Toolbar</CommandName>
+				</Strings>
+			</Menu>
+		</Menus>
+	</Commands>
+	
+	<Symbols>
+		<GuidSymbol name="MermaidChart" value="{3cae6b67-bb28-48f6-888f-641fbb567d4a}"></GuidSymbol>
+		
+		<GuidSymbol name="DiagramListWindowCmdSet" value="{C74ABE73-65D7-4E96-B2F4-30C8354348ED}">
+			<IDSymbol name="DiagramListToolbar" value="0x1000" />
+			<IDSymbol name="DiagramListToolbarGroup" value="0x1050" />
+		</GuidSymbol>
+		
+		<GuidSymbol value="{512fc355-237a-4937-9805-cbdb25e11682}" name="MermaidChartCommandSet">
+			<IDSymbol value="4128" name="MyMenuGroup" />
+			<IDSymbol value="256" name="RefreshDiagramList" />
+			<IDSymbol value="4129" name="OpenDiagramList" />
+		</GuidSymbol>
+		
+		<GuidSymbol value="{0539ae13-0390-4fb5-a266-96ed3eb9cd16}" name="guidImages">
+			<IDSymbol name="bmpPic1" value="1" />
+			<IDSymbol name="bmpPic2" value="2" />
+			<IDSymbol name="bmpPicSearch" value="3" />
+			<IDSymbol name="bmpPicX" value="4" />
+			<IDSymbol name="bmpPicArrows" value="5" />
+			<IDSymbol name="bmpPicStrikethrough" value="6" />
+		</GuidSymbol>
+		
+		<GuidSymbol value="{eef6e5f7-721b-4283-855a-5dfd714f4e36}" name="windowImages1">
+			<IDSymbol name="toolWindowPic1" value="1" />
+			<IDSymbol name="toolWindowPic2" value="2" />
+			<IDSymbol name="toolWindowPicSearch" value="3" />
+			<IDSymbol name="toolWindowPicX" value="4" />
+			<IDSymbol name="toolWindowPicArrows" value="5" />
+			<IDSymbol name="toolWindowPicStrikethrough" value="6" />
+		</GuidSymbol>
+	</Symbols>
 </CommandTable>

@@ -15,6 +15,9 @@ namespace MermaidChart
         public const string MermaidChartString = "3cae6b67-bb28-48f6-888f-641fbb567d4a";
         public static Guid MermaidChart = new Guid(MermaidChartString);
 
+        public const string DiagramListWindowCmdSetString = "c74abe73-65d7-4e96-b2f4-30c8354348ed";
+        public static Guid DiagramListWindowCmdSet = new Guid(DiagramListWindowCmdSetString);
+
         public const string guidMermaidChartPackageCmdSetString = "512fc355-237a-4937-9805-cbdb25e11682";
         public static Guid guidMermaidChartPackageCmdSet = new Guid(guidMermaidChartPackageCmdSetString);
 
@@ -29,6 +32,8 @@ namespace MermaidChart
     /// </summary>
     internal sealed partial class PackageIds
     {
+        public const int DiagramListToolbar = 0x1000;
+        public const int DiagramListToolbarGroup = 0x1050;
         public const int MyMenuGroup = 0x1020;
         public const int cmdidCommand1 = 0x0100;
         public const int cmdidToolWindow1Command = 0x1021;

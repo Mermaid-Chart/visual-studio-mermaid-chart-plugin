@@ -104,7 +104,6 @@ namespace MermaidChart.API
 
         private async Task<EitherE<T>> GetAsync<T>(string url)
         {
-            Debug.WriteLine(DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFZ"));
             try
             {
                 var request = new HttpRequestMessage(HttpMethod.Get, url);

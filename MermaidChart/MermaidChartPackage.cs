@@ -25,8 +25,8 @@ namespace MermaidChart
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            await TestAPICommand.InitializeAsync(this);
-            await MermaidDiagramListOpenCommand.InitializeAsync(this);
+            await DiagramListRefreshCommand.InitializeAsync(this);
+            await DiagramListOpenCommand.InitializeAsync(this);
         }
     }
 }

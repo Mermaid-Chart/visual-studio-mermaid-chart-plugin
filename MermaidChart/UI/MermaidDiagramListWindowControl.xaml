@@ -12,22 +12,11 @@
              d:DesignHeight="300" d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid>
-        
-        <ToolBar 
-             Height="25" 
-             VerticalAlignment="Top"
-             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
-             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}" >
-
-            <Button>
-                <imaging:CrispImage Width="16" Height="16" Moniker="{x:Static catalog:KnownMonikers.Refresh}" />
-            </Button>
-        </ToolBar>
-        
         <TreeView
             Name="treeList"
             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
             Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}">
+            
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
                     <TextBlock Text="{Binding Title}"

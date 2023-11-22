@@ -14,18 +14,27 @@ using MermaidChart.Utils;
 using MermaidChart.API.Models;
 using MermaidChart.API;
 using System.Diagnostics;
+using MermaidChart.Commands;
+using System.Threading;
 
 namespace MermaidChart.UI
 {
     public partial class MermaidDiagramListWindowControl : UserControl
     {
+        private CancellationTokenSource refreshCancellationSource = null;
         private APIClient client = new APIClient();
         public MermaidDiagramListWindowControl()
         {
             this.InitializeComponent();
 
             SettingsGeneralPage.Saved += OnSettingsChanged;
+            DiagramListRefreshCommand.OnRefresh += OnRefreshCommand;
+            
+            RefreshList();
+        }
 
+        private void OnRefreshCommand()
+        {
             RefreshList();
         }
 
@@ -130,11 +139,13 @@ namespace MermaidChart.UI
         private void RefreshList()
         {
             SetListRoot(BuildLoadingTree());
+           
+            if(refreshCancellationSource != null) refreshCancellationSource.Cancel();
+            refreshCancellationSource = new CancellationTokenSource();
 
             _ = ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                var data = await client.GetProjectsWithDocumentsAsync();
-                Debug.WriteLine(data);
+                var data = await client.GetProjectsWithDocumentsAsync().WithCancellation(refreshCancellationSource.Token);
 
                 var rootNode = data.Match(
                     left => BuildFailedTree(left),

@@ -30,6 +30,8 @@ namespace MermaidChart.EditorExtensions
             // we are not calling Dispose on this object. This is because ToolWindowPane calls Dispose on
             // the object returned by the Content property.
             this.Content = new MermaidDiagramListWindowControl();
+
+            this.ToolBar = new System.ComponentModel.Design.CommandID(new Guid("C74ABE73-65D7-4E96-B2F4-30C8354348ED"), 0x1000);
         }
     }
 }

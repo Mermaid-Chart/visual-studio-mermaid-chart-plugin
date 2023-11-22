@@ -65,7 +65,8 @@ namespace MermaidChart.EditorExtensions
                 invalidatedSpans.AddRange(spans);
 
                 if (wasEmpty && this.invalidatedSpans.Count > 0)
-                    view.VisualElement.Dispatcher.BeginInvoke(new Action(AsyncUpdate));
+                    _ = view.VisualElement.Dispatcher.BeginInvoke(new Action(AsyncUpdate));
+
             }
         }
 

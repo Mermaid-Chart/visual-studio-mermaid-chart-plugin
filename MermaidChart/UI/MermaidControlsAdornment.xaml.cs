@@ -68,11 +68,11 @@ namespace MermaidChart
                 var apiClient = new APIClient();
                 var document = await apiClient.GetDocumentAsync(link.DocumentId);
 
-                var (viewUri, filename) = await document.Match(
-                    async left => {
+                var (viewUri, filename) = document.Match(
+                    left => {
                         return (null, null);
                     },
-                    async right => {
+                    right => {
                         var url = URLProvider.ViewUrl(right, theme, format);
                         var filename = ToFilePath(right, format, theme);
                         return (url, filename);

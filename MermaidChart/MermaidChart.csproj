@@ -51,7 +51,7 @@
     <Compile Include="API\Models\MermaidProject.cs" />
     <Compile Include="API\Models\ProjectWithDocuments.cs" />
     <Compile Include="API\URLProvider.cs" />
-    <Compile Include="Commands\TestAPICommand.cs" />
+    <Compile Include="Commands\DiagramListRefreshCommand.cs" />
     <Compile Include="EditorExtensions\IntraTextAdornmentTagger.cs" />
     <Compile Include="EditorExtensions\MermaidTagger.cs" />
     <Compile Include="EditorExtensions\TextAdornment.cs" />
@@ -61,7 +61,7 @@
     </Compile>
     <Compile Include="Options\SettingsGeneralPage.cs" />
     <Compile Include="EditorExtensions\MermaidDiagramListWindow.cs" />
-    <Compile Include="Commands\MermaidDiagramListOpenCommand.cs" />
+    <Compile Include="Commands\DiagramListOpenCommand.cs" />
     <Compile Include="UI\MermaidDiagramListWindowControl.xaml.cs">
       <DependentUpon>MermaidDiagramListWindowControl.xaml</DependentUpon>
     </Compile>
