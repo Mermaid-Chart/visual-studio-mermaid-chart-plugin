@@ -3,15 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
              xmlns:vsshell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
-             xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog" 
+             xmlns:local="clr-namespace:MermaidChart.UI"
              Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid>
+        <Grid.Resources>
+            <local:NullVisibilityConverter x:Key="nullToVisibilityConverter"/>
+        </Grid.Resources>
         <TreeView
             Name="treeList"
             Background="{DynamicResource {x:Static vsshell:VsBrushes.WindowKey}}"
@@ -19,9 +21,18 @@
             
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                    <TextBlock Text="{Binding Title}"
-                               Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
-                               MouseLeftButtonUp="ListItemLeftButtonUp"/>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        MouseLeftButtonUp="ListItemLeftButtonUp">
+                        
+                        <TextBlock Text="{Binding Title}"
+                               Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"/>
+
+                        <TextBlock Text="{Binding Action}"
+                               Foreground="{DynamicResource {x:Static vsshell:VsBrushes.ControlLinkTextKey}}"
+                               Visibility="{Binding Action, Converter={StaticResource nullToVisibilityConverter}}">
+                        </TextBlock>
+                    </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
             

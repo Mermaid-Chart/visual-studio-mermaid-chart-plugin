@@ -94,14 +94,16 @@ namespace MermaidChart.UI
                 errorNode = new MermaidListItem()
                 {
                     Type = MermaidListItemType.Settings,
-                    Title = "Failed: Unauthorized - Open Settings"
+                    Title = "Failed: Unauthorized",
+                    Action = " Open Settings"
                 };
             }else
             {
                 errorNode = new MermaidListItem()
                 {
                     Type = MermaidListItemType.Settings,
-                    Title = "Failed. - Click to Refresh"
+                    Title = "Failed",
+                    Action = " Click to Refresh"
                 };
             }
             root.Children.Add(errorNode);
@@ -197,9 +199,11 @@ namespace MermaidChart.UI
         public MermaidListItem()
         {
             this.Children = new ObservableCollection<MermaidListItem>();
+            this.Action = null;
         }
         public MermaidListItemType Type { get; set; }
         public string Title { get; set; }
+        public string Action { get; set; }
         public string DocumentId { get; set; }
 
         public ObservableCollection<MermaidListItem> Children { get; set; }

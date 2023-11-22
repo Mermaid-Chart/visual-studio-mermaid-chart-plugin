@@ -65,6 +65,7 @@
     <Compile Include="UI\MermaidDiagramListWindowControl.xaml.cs">
       <DependentUpon>MermaidDiagramListWindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\NullVisibilityConverter.cs" />
     <Compile Include="Utils\CommentUtils.cs" />
     <Compile Include="Utils\Either.cs" />
     <Compile Include="Utils\HttpClientExtensions.cs" />
