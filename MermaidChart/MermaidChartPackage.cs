@@ -15,7 +15,7 @@ namespace MermaidChart
     [InstalledProductRegistration(Vsix.Name, Vsix.Description, Vsix.Version)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.MermaidChartString)]
-    [ProvideOptionPage(typeof(OptionsProvider.SettingsGeneralPageOptions), "MermaidChart", "General", 0, 0, true, SupportsProfiles = true)]
+    [ProvideOptionPage(typeof(GeneralOptionPage), "MermaidChart", "General", 0, 0, true, SupportsProfiles = true)]
     [ProvideToolWindow(typeof(MermaidDiagramListWindow), Style = VsDockStyle.Tabbed, Orientation = ToolWindowOrientation.Right, MultiInstances = false, Window = WindowGuids.Toolbox)]
     [ProvideToolWindowVisibility(typeof(MermaidDiagramListWindow), UIContextGuids.SolutionExists)]
     public sealed class MermaidChartPackage : ToolkitPackage

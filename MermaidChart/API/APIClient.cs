@@ -25,7 +25,7 @@ namespace MermaidChart.API
 
     internal class APIClient
     {
-        private string token = SettingsGeneralPage.Instance.AccessToken;
+        private string token = SettingsGeneral.Instance.AccessToken;
 
         private static HttpClient client = new HttpClient(
             new HttpClientHandler()
@@ -36,11 +36,11 @@ namespace MermaidChart.API
         );
 
         public APIClient() {
-            SettingsGeneralPage.Saved += OnSettingsChanged;
+            SettingsGeneral.Saved += OnSettingsChanged;
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
 
-        private void OnSettingsChanged(SettingsGeneralPage obj)
+        private void OnSettingsChanged(SettingsGeneral obj)
         {
             this.token = obj.AccessToken;
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);

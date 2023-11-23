@@ -29,7 +29,7 @@ namespace MermaidChart.UI
         {
             this.InitializeComponent();
 
-            SettingsGeneralPage.Saved += OnSettingsChanged;
+            SettingsGeneral.Saved += OnSettingsChanged;
             DiagramListRefreshCommand.OnRefresh += OnRefreshCommand;
             
             RefreshList();
@@ -49,7 +49,7 @@ namespace MermaidChart.UI
             RefreshList();
         }
 
-        private void OnSettingsChanged(SettingsGeneralPage page)
+        private void OnSettingsChanged(SettingsGeneral page)
         {
             RefreshList();
         }

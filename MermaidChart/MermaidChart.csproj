@@ -59,13 +59,16 @@
     <Compile Include="UI\MermaidControlsAdornment.xaml.cs">
       <DependentUpon>MermaidControlsAdornment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Options\SettingsGeneralPage.cs" />
+    <Compile Include="Options\SettingsGeneral.cs" />
     <Compile Include="EditorExtensions\MermaidDiagramListWindow.cs" />
     <Compile Include="Commands\DiagramListOpenCommand.cs" />
     <Compile Include="UI\MermaidDiagramListWindowControl.xaml.cs">
       <DependentUpon>MermaidDiagramListWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\NullVisibilityConverter.cs" />
+    <Compile Include="UI\SettingsGeneralPageControl.xaml.cs">
+      <DependentUpon>SettingsGeneralPageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\CommentUtils.cs" />
     <Compile Include="Utils\Either.cs" />
     <Compile Include="Utils\HttpClientExtensions.cs" />
@@ -135,6 +138,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MermaidDiagramListWindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsGeneralPageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

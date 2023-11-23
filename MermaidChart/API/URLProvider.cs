@@ -18,7 +18,7 @@ namespace MermaidChart.API
 
         private static string baseUrl()
         {
-            return SettingsGeneralPage.Instance.BaseUrl;
+            return SettingsGeneral.Instance.BaseUrl;
         }
 
         internal static string ViewUrl(MermaidDocument document, DiagramTheme theme, DiagramFormat format = DiagramFormat.PNG)
