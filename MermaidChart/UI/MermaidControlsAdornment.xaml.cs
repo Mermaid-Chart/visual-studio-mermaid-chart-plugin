@@ -107,7 +107,7 @@ namespace MermaidChart
         private async Task OpenDiagramAsync(string path)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            (await VS.GetServiceAsync<DTE, DTE>()).ItemOperations.OpenFile(path);
+            await VS.Documents.OpenInPreviewTabAsync(path);
         }
 
         private async Task<EitherE<bool>> DownloadDiagramAsync(APIClient client, string viewUri, string path)

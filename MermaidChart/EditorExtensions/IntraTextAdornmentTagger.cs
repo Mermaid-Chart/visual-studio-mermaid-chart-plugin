@@ -81,7 +81,12 @@ namespace MermaidChart.EditorExtensions
                 Dictionary<SnapshotSpan, TAdornment> translatedAdornmentCache = new Dictionary<SnapshotSpan, TAdornment>();
 
                 foreach (var keyValuePair in adornmentCache)
-                    translatedAdornmentCache.Add(keyValuePair.Key.TranslateTo(snapshot, SpanTrackingMode.EdgeExclusive), keyValuePair.Value);
+                {
+                    try
+                    {
+                        translatedAdornmentCache.Add(keyValuePair.Key.TranslateTo(snapshot, SpanTrackingMode.EdgeExclusive), keyValuePair.Value);
+                    }catch (Exception) { }
+                }
 
                 adornmentCache = translatedAdornmentCache;
             }
