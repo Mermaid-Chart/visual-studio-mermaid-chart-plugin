@@ -14,6 +14,9 @@ using MermaidChart.Options;
 using Microsoft.VisualStudio.Shell.Interop;
 using static Microsoft.VisualStudio.VSConstants;
 using static MermaidChart.Options.OptionsProvider;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace MermaidChart.UI
 {
@@ -188,12 +191,44 @@ namespace MermaidChart.UI
         {
             _ = ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
+                var docView = await VS.Documents.GetActiveDocumentViewAsync();
+                if (docView?.TextView == null) return;
+                var position = docView.TextView.Caret.Position.BufferPosition;
+                
+
                 DTE2 dte = await VS.GetServiceAsync<DTE, DTE2>();
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var selectedText = (TextSelection)dte.ActiveDocument.Selection;
+                var selection = (TextSelection)dte.ActiveDocument.Selection;
+                var editorPoint = selection.ActivePoint.CreateEditPoint();
                 var commenter = CommentUtils.GetCommentData(dte.ActiveDocument.Language);
+                var comment = commenter.GetCommented($"[MermaidChart: {documentId}]");
+                if (String.IsNullOrWhiteSpace(editorPoint.GetLines(selection.CurrentLine, selection.CurrentLine + 1)))
+                {
+                    selection.Insert(comment);
+                }
+                else if (selection.CurrentLine == 1)
+                {
+                    Debug.WriteLine("Put at start of document with code nextLine");
+                    docView.TextBuffer.Insert(0, $"{comment}\n");
+                }
+                else
+                {
+                    var previousLine = editorPoint.GetLines(selection.CurrentLine, selection.CurrentLine + 1);
+                    var whitespaceRegex = new Regex(@"([\r\n\t\f\v \\]*)");
+                    var previousLineWhitespaces = whitespaceRegex.Matches(previousLine)
+                        .Cast<Match>()
+                        .First()
+                        ?.Groups[1]
+                        ?.Value;
+                    if(previousLineWhitespaces == null)
+                    {
+                        previousLineWhitespaces = "";
+                    }
 
-                selectedText.Insert(commenter.GetCommented($"[MermaidChart: {documentId}]"));
+                    editorPoint.LineUp();
+                    editorPoint.EndOfLine();
+                    editorPoint.Insert($"\n{previousLineWhitespaces}{comment}");
+                }
             });
         }
     }
