@@ -7,12 +7,12 @@ namespace MermaidChart
 {
     internal sealed partial class Vsix
     {
-        public const string Id = "MermaidChart.ff484abd-f4f3-4a6c-9294-9936b1fa74ac";
-        public const string Name = "MermaidChart";
-        public const string Description = @"Empty VSIX Project.";
+        public const string Id = "MermaidChart";
+        public const string Name = "Mermaid Chart";
+        public const string Description = @"The Mermaid Chart extension for JetBrains IDEs enables developers to view and edit diagrams stored in Mermaid Chart within the IDE. With integration to the Mermaid Chart service, this extension allows users to attach diagrams to their code. Gain quick access to read and edit diagrams.";
         public const string Language = "en-US";
         public const string Version = "1.0";
-        public const string Author = "Company";
+        public const string Author = "MermaidChart";
         public const string Tags = "";
     }
 }

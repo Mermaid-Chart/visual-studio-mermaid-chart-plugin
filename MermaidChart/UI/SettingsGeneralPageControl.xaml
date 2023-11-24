@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MermaidChart"
              mc:Ignorable="d"
              d:DesignHeight="300"
              Name="MyToolWindow">
@@ -19,10 +20,30 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Content="Token: "/>
-        <TextBox Name="tokenInput" TextChanged="tokenInput_TextChanged" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" MaxLines="1" Height="25"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Base url: "/>
-        <TextBox Name="baseUrlInput" TextChanged="baseUrlInput_TextChanged" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" MaxLines="1" Height="25"/>
+        <Label Grid.Row="0" 
+               Grid.Column="0" 
+               Content="{x:Static local:Constants.SettingsAccessToken}" 
+               ContentStringFormat="{}{0}: "/>
+        <TextBox 
+            Name="tokenInput" 
+            TextChanged="tokenInput_TextChanged"
+            Grid.Row="0" 
+            Grid.Column="1" 
+            VerticalContentAlignment="Center"
+            MaxLines="1" 
+            Height="25"/>
+        
+        <Label Grid.Row="2" 
+               Grid.Column="0" 
+               Content="{x:Static local:Constants.SettingsBaseUrl}"
+               ContentStringFormat="{}{0}: "/>
+        <TextBox Name="baseUrlInput" 
+                 TextChanged="baseUrlInput_TextChanged" 
+                 Grid.Row="2" 
+                 Grid.Column="1" 
+                 VerticalContentAlignment="Center"
+                 MaxLines="1"
+                 Height="25"/>
 
         <TextBlock 
             Name="hintText"
@@ -30,11 +51,11 @@
             Grid.Column="0" 
             Grid.ColumnSpan="2"> 
 
-            <Run Text="You can get token here: "/>
-            <Hyperlink NavigateUri="https://www.mermaidchart.com/app/user/settings" RequestNavigate="Hyperlink_RequestNavigate"> 
-                https://www.mermaidchart.com/app/user/settings
+            <Run Text="{x:Static local:Constants.SettingsTokenHintRationale}"/>
+            <Hyperlink NavigateUri="{x:Static local:Constants.SettingsTokenHintLink}" 
+                       RequestNavigate="Hyperlink_RequestNavigate"> 
+                <TextBlock Text="{x:Static local:Constants.SettingsTokenHintLink}"/>
             </Hyperlink>
-
         </TextBlock>
     </Grid>
 </UserControl>

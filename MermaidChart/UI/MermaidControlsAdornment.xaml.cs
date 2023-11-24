@@ -36,20 +36,15 @@ namespace MermaidChart
     public partial class MermaidControlsAdornment : UserControl
     {
         private MermaidLink link;
-        private Image view;
-        private Image edit;
 
         public MermaidControlsAdornment(MermaidLink link)
         {
             InitializeComponent();
             this.link = link;
 
-            view = (Image)FindName("ViewImage");
-            edit = (Image)FindName("EditImage");
+            EditImage.MouseLeftButtonUp += OnEditClicked;
 
-            edit.MouseLeftButtonUp += OnEditClicked;
-
-            view.MouseLeftButtonUp += OnViewClicked;
+            ViewImage.MouseLeftButtonUp += OnViewClicked;
         }
 
         private void OnEditClicked(object s, MouseEventArgs e)
@@ -59,8 +54,8 @@ namespace MermaidChart
 
         private void OnViewClicked(object s, MouseEventArgs e)
         {
-            ThreadHelper.JoinableTaskFactory.RunAsync(async () => {
-                await VS.StatusBar.ShowProgressAsync("Diagram downloading", 1, 3);
+            _ = ThreadHelper.JoinableTaskFactory.RunAsync(async () => {
+                await VS.StatusBar.ShowProgressAsync(Constants.ProgressDiagramDownloading, 1, 3);
 
                 var format = URLProvider.DiagramFormat.PNG;
                 var theme = GetDiagramTheme();
@@ -81,8 +76,8 @@ namespace MermaidChart
 
                 if (viewUri == null || filename == null)
                 {
-                    await VS.StatusBar.ShowProgressAsync("Diagram downloading", 3, 3);
-                    await VS.MessageBox.ShowErrorAsync("Diagram download failed");
+                    await VS.StatusBar.ShowProgressAsync(Constants.ProgressDiagramDownloading, 3, 3);
+                    await VS.MessageBox.ShowErrorAsync(Constants.ErrorDiagramDownloadingFailed);
                     return;
                 }
 
@@ -90,7 +85,7 @@ namespace MermaidChart
 
                 if(File.Exists(filePath))
                 {
-                    await VS.StatusBar.ShowProgressAsync("Diagram downloading", 3, 3);
+                    await VS.StatusBar.ShowProgressAsync(Constants.ProgressDiagramDownloading, 3, 3);
                     await OpenDiagramAsync(filePath);
                     return;
                 }
@@ -98,7 +93,7 @@ namespace MermaidChart
                 var r = await DownloadDiagramAsync(apiClient, viewUri, filePath);
 
                 await r.Match(
-                    async left => await VS.MessageBox.ShowErrorAsync("Diagram download failed"),
+                    async left => await VS.MessageBox.ShowErrorAsync(Constants.ErrorDiagramDownloadingFailed),
                     async right => await OpenDiagramAsync(filePath)
                 );
             });
@@ -112,11 +107,11 @@ namespace MermaidChart
 
         private async Task<EitherE<bool>> DownloadDiagramAsync(APIClient client, string viewUri, string path)
         {
-            await VS.StatusBar.ShowProgressAsync("Diagram downloading", 2, 3);
+            await VS.StatusBar.ShowProgressAsync(Constants.ProgressDiagramDownloading, 2, 3);
 
             var r = await client.DownloadFileAsync(viewUri, path);
 
-            await VS.StatusBar.ShowProgressAsync("Diagram downloading", 3, 3);
+            await VS.StatusBar.ShowProgressAsync(Constants.ProgressDiagramDownloading, 3, 3);
 
             return r;
         }

@@ -31,17 +31,15 @@ namespace MermaidChart.Options
 
     public class SettingsGeneral : BaseOptionModel<SettingsGeneral>
     {
-        private const string DefaultUrl = "https://www.mermaidchart.com";
+        [Category(Constants.SettingsCategoryGeneral)]
+        [DisplayName(Constants.SettingsBaseUrl)]
+        [Description(Constants.SettingsBaseUrlDescription)]
+        [DefaultValue(Constants.DefaultBaseUrl)]
+        public string BaseUrl { get; set; } = Constants.DefaultBaseUrl;
 
-        [Category("General")]
-        [DisplayName("Base URL")]
-        [Description("Mermaid Chart API base URL")]
-        [DefaultValue(DefaultUrl)]
-        public string BaseUrl { get; set; } = DefaultUrl;
-
-        [Category("General")]
-        [DisplayName("Access Token")]
-        [Description("Mermaid Chart API access token")]
+        [Category(Constants.SettingsCategoryGeneral)]
+        [DisplayName(Constants.SettingsAccessToken)]
+        [Description(Constants.SettingsAccessTokenDescription)]
         public string AccessToken { get; set; } = "";
     }
 }

@@ -17,6 +17,7 @@ using static MermaidChart.Options.OptionsProvider;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.IO;
 
 namespace MermaidChart.UI
 {
@@ -200,7 +201,7 @@ namespace MermaidChart.UI
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                 var selection = (TextSelection)dte.ActiveDocument.Selection;
                 var editorPoint = selection.ActivePoint.CreateEditPoint();
-                var commenter = CommentUtils.GetCommentData(dte.ActiveDocument.Language);
+                var commenter = CommentUtils.GetCommentData(dte.ActiveDocument.Language, Path.GetExtension(dte.ActiveDocument.Name));
                 var comment = commenter.GetCommented($"[MermaidChart: {documentId}]");
                 if (String.IsNullOrWhiteSpace(editorPoint.GetLines(selection.CurrentLine, selection.CurrentLine + 1)))
                 {

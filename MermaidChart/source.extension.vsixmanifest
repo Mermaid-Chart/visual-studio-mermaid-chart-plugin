@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="MermaidChart.ff484abd-f4f3-4a6c-9294-9936b1fa74ac" Version="1.0" Language="en-US" Publisher="Company" />
-        <DisplayName>MermaidChart</DisplayName>
-        <Description>Empty VSIX Project.</Description>
+        <Identity Id="MermaidChart" Version="1.0" Language="en-US" Publisher="MermaidChart" />
+        <DisplayName>Mermaid Chart</DisplayName>
+        <Description xml:space="preserve">The Mermaid Chart extension for JetBrains IDEs enables developers to view and edit diagrams stored in Mermaid Chart within the IDE. With integration to the Mermaid Chart service, this extension allows users to attach diagrams to their code. Gain quick access to read and edit diagrams.</Description>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
     </Metadata>

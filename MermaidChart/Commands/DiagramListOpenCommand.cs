@@ -4,12 +4,12 @@ using MermaidChart.EditorExtensions;
 
 namespace MermaidChart.Commands
 {
-    [Command("512fc355-237a-4937-9805-cbdb25e11682", 4129)]
+    [Command(PackageGuids.MermaidChartCommandSetString, PackageIds.OpenDiagramList)]
     internal sealed class DiagramListOpenCommand : BaseCommand<DiagramListOpenCommand>
     {
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
-            var window = await VS.Windows.ShowToolWindowAsync(new Guid("da7a0845-9354-4cb7-aa80-2d2d9399fb44"));
+            var window = await VS.Windows.ShowToolWindowAsync(MermaidDiagramListWindow.guid);
             if (window == null)
             {
                 throw new NotSupportedException("Cannot create tool window");

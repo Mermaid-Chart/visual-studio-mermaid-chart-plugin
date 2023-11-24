@@ -25,12 +25,32 @@ namespace MermaidChart.Utils
 
     internal class CommentUtils
     {
-        public static CommentData GetCommentData(string language)
+        public static CommentData GetCommentData(string language, string fileExt)
         {
+            if(language.ToLower().Equals("plain text"))
+            {
+                switch(fileExt)
+                {
+                    case ".md":
+                        language = "markdown";
+                        break;
+                    case ".yaml":
+                    case ".yml":
+                        language = "yaml";
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             switch (language.ToLower())
             {
+                case "markdown":
+                    return new CommentData("[//]: <>", "");
                 case "xml":
+                case "html":
                     return new CommentData("<!--", "-->");
+                case "yaml":
                 case "python":
                     return new CommentData("#", "");
                 default:

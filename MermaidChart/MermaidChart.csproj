@@ -52,6 +52,7 @@
     <Compile Include="API\Models\ProjectWithDocuments.cs" />
     <Compile Include="API\URLProvider.cs" />
     <Compile Include="Commands\DiagramListRefreshCommand.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="EditorExtensions\IntraTextAdornmentTagger.cs" />
     <Compile Include="EditorExtensions\MermaidTagger.cs" />
     <Compile Include="EditorExtensions\TextAdornment.cs" />

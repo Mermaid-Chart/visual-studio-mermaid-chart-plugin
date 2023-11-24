@@ -8,6 +8,7 @@ using MermaidChart.EditorExtensions;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.VisualStudio.Shell.Interop;
+using System.Resources;
 
 namespace MermaidChart
 {

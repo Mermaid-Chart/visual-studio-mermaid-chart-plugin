@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace MermaidChart.Commands
 {
-    [Command("512fc355-237a-4937-9805-cbdb25e11682", 0x0100)]
+    [Command(PackageGuids.MermaidChartCommandSetString, PackageIds.RefreshDiagramList)]
     internal sealed class DiagramListRefreshCommand : BaseCommand<DiagramListRefreshCommand>
     {
         public delegate void DiagramListRefreshHandler();
