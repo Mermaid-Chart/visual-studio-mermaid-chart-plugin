@@ -185,7 +185,7 @@ namespace MermaidChart.UI
 
         private void NavigatePluginSettings()
         {
-            package.ShowOptionPage(typeof(SettingsGeneralPageOptions));
+            package.ShowOptionPage(typeof(GeneralOptionPage));
         }
 
         private void InsertDocumentLink(string documentId)

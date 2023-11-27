@@ -52,8 +52,7 @@
             Grid.ColumnSpan="2"> 
 
             <Run Text="{x:Static local:Constants.SettingsTokenHintRationale}"/>
-            <Hyperlink NavigateUri="{x:Static local:Constants.SettingsTokenHintLink}" 
-                       RequestNavigate="Hyperlink_RequestNavigate"> 
+            <Hyperlink NavigateUri="{Binding Source={x:Static local:Constants.SettingsTokenHintLink}}" RequestNavigate="Hyperlink_RequestNavigate"> 
                 <TextBlock Text="{x:Static local:Constants.SettingsTokenHintLink}"/>
             </Hyperlink>
         </TextBlock>
